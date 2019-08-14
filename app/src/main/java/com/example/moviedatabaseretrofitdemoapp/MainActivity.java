@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import com.example.moviedatabaseretrofitdemoapp.model.MovieDatabaseModel;
 import com.example.moviedatabaseretrofitdemoapp.network.MDRetrofitInstance;
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private MdRetrofitAdaptor mdRetrofitAdaptor;
     public static final String INTENT_MESSAGE = "message";
+    private ProgressBar prgsBar;
 
 
     @Override
@@ -35,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerView = findViewById(R.id.recyclerview_list);
+        prgsBar = findViewById(R.id.prgs_bar);
+        prgsBar.setVisibility(View.VISIBLE);
 
 
         UrlEndpointClient urlEndpointClient = MDRetrofitInstance.getRetrofitInstance().create(UrlEndpointClient.class);
@@ -44,7 +49,9 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<MovieDatabaseModel>() {
             @Override
             public void onResponse(Call<MovieDatabaseModel> call, Response<MovieDatabaseModel> response) {
-              MovieDatabaseModel movieDatabaseModel = response.body();
+                MovieDatabaseModel movieDatabaseModel = response.body();
+
+              prgsBar.setVisibility(View.GONE);
 
               mdRetrofitAdaptor = new MdRetrofitAdaptor(movieDatabaseModel, new MdRetrofitAdaptor.OnMdRetrofitClickedListener() {
                   @Override

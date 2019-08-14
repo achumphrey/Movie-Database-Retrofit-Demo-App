@@ -26,6 +26,7 @@ public class GetMovieActivity extends AppCompatActivity {
     private TextView tv_overview;
     private ImageView img_view;
     private RatingBar rt_bar;
+    private TextView tv_vt_avg;
 
 
     @Override
@@ -37,6 +38,7 @@ public class GetMovieActivity extends AppCompatActivity {
         tv_overview = findViewById(R.id.tv_overview);
         img_view = findViewById(R.id.img_view);
         rt_bar = findViewById(R.id.rt_bar);
+        tv_vt_avg = findViewById(R.id.tv_vote_avg);
 
         Intent intent = getIntent();
         int movie_id = intent.getIntExtra(MainActivity.INTENT_MESSAGE, 0);
@@ -55,6 +57,7 @@ public class GetMovieActivity extends AppCompatActivity {
                 Picasso.get().load("https://image.tmdb.org/t/p/w185"+ detailModel.getPosterPath())
                         .into(img_view);
                 rt_bar.setRating(detailModel.getVoteAverage().floatValue());
+                tv_vt_avg.setText(detailModel.getVoteAverage().toString()+ "/10");
             }
 
             @Override
