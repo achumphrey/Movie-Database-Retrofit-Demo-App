@@ -44,7 +44,7 @@ public class GetMovieActivity extends AppCompatActivity {
         int movie_id = intent.getIntExtra(MainActivity.INTENT_MESSAGE, 0);
 
         UrlEndpointClient urlEndpointClient = MDRetrofitInstance.getRetrofitInstance().create(UrlEndpointClient.class);
-        Call <DetailModel> call = urlEndpointClient.getMvIdReponse(movie_id);
+        Call <DetailModel> call = urlEndpointClient.getMvIdReponse(movie_id, BaseUrlConstant.API_KEY);
 
         call.enqueue(new Callback<DetailModel>() {
             @Override

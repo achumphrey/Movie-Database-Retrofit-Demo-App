@@ -38,7 +38,7 @@ public class MdRetrofitAdaptor extends RecyclerView.Adapter<MdRetrofitAdaptor.Md
 
         holder.tvTitle.setText(mdRepos.getResults().get(position).getTitle());
         holder.tvOverview.setText(mdRepos.getResults().get(position).getOverview());
-        Picasso.get().load("https://image.tmdb.org/t/p/w185"+mdRepos.getResults().get(position).getPosterPath()).into(holder.imgView);
+        Picasso.get().load("https://image.tmdb.org/t/p/w185"+ mdRepos.getResults().get(position).getPosterPath()).into(holder.imgView);
         holder.ratingBar.setRating((mdRepos.getResults().get(position).getVoteAverage()).floatValue());
 
         holder.bind(mdRepos, listener);

@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         UrlEndpointClient urlEndpointClient = MDRetrofitInstance.getRetrofitInstance().create(UrlEndpointClient.class);
 
-        Call <MovieDatabaseModel> call = urlEndpointClient.getReponse("2ca947b36cea2f898bd68e3a64039720");
+        Call <MovieDatabaseModel> call = urlEndpointClient.getReponse(BaseUrlConstant.API_KEY);
 
         call.enqueue(new Callback<MovieDatabaseModel>() {
             @Override

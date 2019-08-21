@@ -16,7 +16,11 @@ public interface UrlEndpointClient {
         @GET("movie/popular")
         Call<MovieDatabaseModel> getReponse(@Query("api_key") String api_key);
 
-        @GET("movie/{movie_id}?api_key=2ca947b36cea2f898bd68e3a64039720")
-        Call<DetailModel> getMvIdReponse(@Path("movie_id") int movie_id);
+//        @GET("movie/{movie_id}?api_key=2ca947b36cea2f898bd68e3a64039720")
+//        Call<DetailModel> getMvIdReponse(@Path("movie_id") int movie_id);
+
+        @GET("movie/{movie_id}")
+        Call<DetailModel> getMvIdReponse(@Path("movie_id") int movie_id,
+                                         @Query("api_key") String apiKey);
 
 }
