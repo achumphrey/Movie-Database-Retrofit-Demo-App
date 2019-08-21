@@ -43,8 +43,10 @@ public class GetMovieActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int movie_id = intent.getIntExtra(MainActivity.INTENT_MESSAGE, 0);
 
-        UrlEndpointClient urlEndpointClient = MDRetrofitInstance.getRetrofitInstance().create(UrlEndpointClient.class);
-        Call <DetailModel> call = urlEndpointClient.getMvIdReponse(movie_id, BaseUrlConstant.API_KEY);
+        UrlEndpointClient urlEndpointClient = MDRetrofitInstance.getRetrofitInstance()
+                .create(UrlEndpointClient.class);
+        Call <DetailModel> call = urlEndpointClient
+                .getMvIdReponse(movie_id, BaseUrlConstant.API_KEY);
 
         call.enqueue(new Callback<DetailModel>() {
             @Override
@@ -54,7 +56,8 @@ public class GetMovieActivity extends AppCompatActivity {
 
                 tv_title.setText(detailModel.getTitle());
                 tv_overview.setText(detailModel.getOverview());
-                Picasso.get().load("https://image.tmdb.org/t/p/w185"+ detailModel.getPosterPath())
+                Picasso.get().load("https://image.tmdb.org/t/p/w185"
+                        + detailModel.getPosterPath())
                         .into(img_view);
                 rt_bar.setRating(detailModel.getVoteAverage().floatValue());
                 tv_vt_avg.setText(detailModel.getVoteAverage().toString()+ "/10");
